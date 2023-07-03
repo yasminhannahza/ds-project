@@ -11,7 +11,8 @@ from pandas.tseries.offsets import BDay
 import plotly.io as pio
 from xgboost import XGBRegressor
 from PIL import Image
-
+from model_loader import load_model_past
+from model_loader import load_model_future
 
 # Streamlit web app
 def main():
@@ -128,8 +129,12 @@ def main():
         st.header("Past Prediction")
 
         # Load the pre-trained XGBoost model
-        model = XGBRegressor()
-        model.load_model("past_xgboost_model.json.json")
+        #model = XGBRegressor()
+        #model.load_model("past_xgboost_model.json.json")
+
+        # Load the pre-trained XGBoost model
+        model = load_model_past()
+
 
         # Set the currency
         symbol = "EURUSD=X"
@@ -229,9 +234,11 @@ def main():
         #    model = pickle.load(file)
 
         # Load the pre-trained XGBoost model
-        model = xgb.Booster()
-        model.load_model('future_xgboost_model.json.json')
+        #model = xgb.Booster()
+        #model.load_model('future_xgboost_model.json.json')
 
+        # Load the pre-trained XGBoost model
+        model = load_model_future()
 
         # Define the prediction durations and their corresponding options
         prediction_durations = {
